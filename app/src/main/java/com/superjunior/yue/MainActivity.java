@@ -14,30 +14,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.superjunior.yue.util.CommonUtils;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.setStatusBarBackground(R.color.material_grey_200);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.material_grey_200));
-        setSupportActionBar(toolbar);
-
-        ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            setupDrawerContent(navigationView);
-        }
+        initViews();
     }
 
     @Override
@@ -58,12 +47,40 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    private void initViews() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout.setStatusBarBackground(R.color.material_grey_200);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.material_grey_200));
+        setSupportActionBar(mToolbar);
+
+        ActionBar ab = getSupportActionBar();
+        CommonUtils.checkNotNull(ab).setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
+
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        setupDrawerContent(CommonUtils.checkNotNull(mNavigationView));
+    }
+
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
+                            case R.id.news_navigation_menu_item:
+                                setTitle(getString(R.string.news));
+                                break;
                             case R.id.science_navigation_menu_item:
                                 setTitle(getString(R.string.science));
                                 break;

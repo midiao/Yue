@@ -7,6 +7,18 @@ package com.superjunior.yue.net;
 public class Apis {
     private static final String juheKey = "b74b0d9e84d744c3fedb76b476b8e03e";
     private static final String juheNewsBaseUrl = "http://v.juhe.cn/toutiao/index?type=";
+    private static final String[] newsTitles = new String[]{
+            "头条",
+            "社会",
+            "国内",
+            "国际",
+            "娱乐",
+            "体育",
+            "军事",
+            "科技",
+            "财经",
+            "时尚"
+    };
     private static final String[] newsTypes = new String[]{
             "top", //头条
             "shehui", //社会
@@ -19,6 +31,11 @@ public class Apis {
             "caijing", //财经
             "shishang" //时尚
     };
+
+    public static String getNewsUrl(int position) {
+        return juheNewsBaseUrl + newsTypes[position] + "&key=" + juheKey;
+    }
+
     public static final String TOP_URL = juheNewsBaseUrl + newsTypes[0] + "&key=" + juheKey;
     public static final String SHEHUI_URL = juheNewsBaseUrl + newsTypes[1] + "&key=" + juheKey;
     public static final String GUONEI_URL = juheNewsBaseUrl + newsTypes[2] + "&key=" + juheKey;

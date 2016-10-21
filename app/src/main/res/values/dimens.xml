@@ -3,4 +3,22 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="textSize10">10sp</dimen>
+    <dimen name="textSize12">12sp</dimen>
+    <dimen name="textSize13">13sp</dimen>
+    <dimen name="textSize14">14sp</dimen>
+    <dimen name="textSize15">15sp</dimen>
+    <dimen name="textSize16">16sp</dimen>
+    <dimen name="textSize17">17sp</dimen>
+    <dimen name="textSize18">18sp</dimen>
+    <dimen name="textSize19">19sp</dimen>
+    <dimen name="textSize20">20sp</dimen>
+    <dimen name="textSize21">21sp</dimen>
+    <dimen name="textSize22">22sp</dimen>
+    <dimen name="textSize24">24sp</dimen>
+    <dimen name="textSize25">25sp</dimen>
+    <dimen name="textSize26">26sp</dimen>
+    <dimen name="textSize28">28sp</dimen>
+    <dimen name="textSize30">30sp</dimen>
+    <dimen name="textSize32">32sp</dimen>
 </resources>
