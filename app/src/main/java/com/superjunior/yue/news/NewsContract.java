@@ -13,6 +13,10 @@ public interface NewsContract {
 
     interface View extends BaseView<Presenter> {
         void setTitle(String title);
+
+        void showLoading();
+
+        void hideLoading();
     }
 
     interface Presenter extends BasePresenter {

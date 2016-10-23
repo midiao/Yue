@@ -4,10 +4,10 @@ package com.superjunior.yue.net;
  * Created by lqynydyxf on 2016/10/20.
  */
 
-public class Apis {
+public class NewsAPI {
     private static final String juheKey = "b74b0d9e84d744c3fedb76b476b8e03e";
     private static final String juheNewsBaseUrl = "http://v.juhe.cn/toutiao/index?type=";
-    private static final String[] newsTitles = new String[]{
+    public static final String[] newsTitles = new String[]{
             "头条",
             "社会",
             "国内",
@@ -19,7 +19,7 @@ public class Apis {
             "财经",
             "时尚"
     };
-    private static final String[] newsTypes = new String[]{
+    public static final String[] newsTypes = new String[]{
             "top", //头条
             "shehui", //社会
             "guonei", //国内
