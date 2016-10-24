@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.superjunior.yue.news.NewsFragment;
+import com.superjunior.yue.news.NewsPagerPresenter;
 import com.superjunior.yue.util.ActivityUtils;
 import com.superjunior.yue.util.CommonUtils;
 
@@ -20,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private Toolbar mToolbar;
+    private NewsFragment mNewsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mNewsFragment = new NewsFragment();
         initViews();
     }
 
@@ -69,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(CommonUtils.checkNotNull(mNavigationView));
+
+        ActivityUtils.addFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
+        new NewsPagerPresenter(mNewsFragment);
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -79,15 +85,15 @@ public class MainActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()) {
                             case R.id.news_navigation_menu_item:
                                 setTitle(getString(R.string.news));
-                                ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), new NewsFragment(), R.id.contentFrame);
+                                ActivityUtils.replaceFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
                                 break;
                             case R.id.science_navigation_menu_item:
                                 setTitle(getString(R.string.science));
+                                ActivityUtils.removeFragment(getSupportFragmentManager(), mNewsFragment);
                                 break;
                             default:
                                 break;
                         }
-                        menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         return true;
                     }

@@ -9,11 +9,9 @@ import com.superjunior.yue.BaseView;
  * Created by cb8695 on 2016/10/21.
  */
 
-public interface NewsContract {
+public interface NewsPagerContract {
 
     interface View extends BaseView<Presenter> {
-        void setTitle(String title);
-
         void showLoading();
 
         void hideLoading();

@@ -1,6 +1,5 @@
 package com.superjunior.yue.news;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -13,11 +12,8 @@ import com.superjunior.yue.net.NewsAPI;
 
 public class NewsFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private Context mContext;
-
-    public NewsFragmentPagerAdapter(FragmentManager fragmentManager, Context context) {
+    public NewsFragmentPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-        this.mContext = context;
     }
 
     @Override
@@ -34,4 +30,5 @@ public class NewsFragmentPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return NewsAPI.newsTitles[position];
     }
+
 }
