@@ -1,5 +1,6 @@
 package com.superjunior.yue.news;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 
 import com.superjunior.yue.BasePresenter;
@@ -20,6 +21,6 @@ public interface NewsPagerContract {
     interface Presenter extends BasePresenter {
         void requestData(String url);
 
-        PagerAdapter initPagerAdapter();
+        PagerAdapter initPagerAdapter(FragmentManager fragmentManager);
     }
 }

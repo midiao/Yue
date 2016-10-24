@@ -1,8 +1,8 @@
 package com.superjunior.yue.news;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +19,7 @@ public class NewsFragment extends Fragment implements NewsPagerContract.View {
     private TabLayout mTabLayout;
     private View contentView;
     private NewsFragmentPagerAdapter mPagerAdapter;
+    private NewsPagerContract.Presenter mPresenter;
 
     public NewsFragment() {
     }
@@ -29,7 +30,7 @@ public class NewsFragment extends Fragment implements NewsPagerContract.View {
         contentView = inflater.inflate(R.layout.fragment_news, container, false);
         mViewPager = (ViewPager) contentView.findViewById(R.id.news_viewPager);
         mTabLayout = (TabLayout) contentView.findViewById(R.id.news_tabLayout);
-        mPagerAdapter = new NewsFragmentPagerAdapter(getFragmentManager());
+        mPagerAdapter = (NewsFragmentPagerAdapter) mPresenter.initPagerAdapter(getFragmentManager());
         mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         return contentView;
@@ -37,7 +38,7 @@ public class NewsFragment extends Fragment implements NewsPagerContract.View {
 
     @Override
     public void setPresenter(NewsPagerContract.Presenter presenter) {
-
+        mPresenter = CommonUtils.checkNotNull(presenter);
     }
 
     @Override

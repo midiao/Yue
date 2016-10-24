@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mNewsFragment = new NewsFragment();
         initViews();
+        new NewsPagerPresenter(mNewsFragment);
     }
 
     @Override
@@ -74,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerContent(CommonUtils.checkNotNull(mNavigationView));
 
         ActivityUtils.addFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
-        new NewsPagerPresenter(mNewsFragment);
     }
 
     private void setupDrawerContent(NavigationView navigationView) {

@@ -5,8 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/news_recyclerView"
+    <com.race604.flyrefresh.FlyRefreshLayout
+        android:id="@+id/news_flyRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/news_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.race604.flyrefresh.FlyRefreshLayout>
 </LinearLayout>
