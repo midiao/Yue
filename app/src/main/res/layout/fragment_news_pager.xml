@@ -5,14 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.race604.flyrefresh.FlyRefreshLayout
-        android:id="@+id/news_flyRefreshLayout"
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/news_bgaRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/news_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.race604.flyrefresh.FlyRefreshLayout>
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 </LinearLayout>

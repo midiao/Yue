@@ -2,7 +2,8 @@ package com.superjunior.yue.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import com.superjunior.yue.R;
@@ -43,5 +44,17 @@ public class CommonUtils {
         if (loadingProgressCircle != null) {
             loadingProgressCircle.dismiss();
         }
+    }
+
+    public static boolean isNetworkConnected() {
+        if (mContext != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) mContext
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
+            }
+        }
+        return false;
     }
 }
