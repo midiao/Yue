@@ -7,5 +7,8 @@
     <string name="news">新闻</string>
     <string name="demo_title">身为一个英国人，带家人朋友去吃火锅总能搞出不少趣事</string>
     <string name="loading">正在加载…</string>
+    <string name="refreshing">正在刷新…</string>
     <string name="network_disable">网络不可用</string>
+    <string name="loading_more">加载更多</string>
+    <string name="nomoredata">没有更多数据</string>
 </resources>

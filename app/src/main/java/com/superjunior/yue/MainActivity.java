@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.science_navigation_menu_item:
                                 setTitle(getString(R.string.science));
-                                ActivityUtils.removeFragment(getSupportFragmentManager(), mNewsFragment);
+                                ActivityUtils.replaceFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
                                 break;
                             default:
                                 break;
