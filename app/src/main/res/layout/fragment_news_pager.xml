@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:id="@+id/news_swipeRefreshLayout"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:background="@color/material_grey_200">
 
-    <com.lhh.ptrrv.library.PullToRefreshRecyclerView
-        android:id="@+id/news_refreshRecyclerView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/news_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
