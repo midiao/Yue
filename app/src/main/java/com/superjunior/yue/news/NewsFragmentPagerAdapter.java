@@ -18,7 +18,7 @@ public class NewsFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return NewsPagerFragment.newInstance();
+        return NewsPagerFragment.newInstance(NewsAPI.newsTypes[position]);
     }
 
     @Override

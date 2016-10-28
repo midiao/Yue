@@ -31,6 +31,7 @@ public class NewsFragment extends Fragment implements NewsPagerContract.View {
         mViewPager = (ViewPager) contentView.findViewById(R.id.news_viewPager);
         mTabLayout = (TabLayout) contentView.findViewById(R.id.news_tabLayout);
         mPagerAdapter = (NewsFragmentPagerAdapter) mPresenter.initPagerAdapter(getFragmentManager());
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         return contentView;

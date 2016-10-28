@@ -5,8 +5,8 @@ package com.superjunior.yue.net;
  */
 
 public class NewsAPI {
-    private static final String juheKey = "b74b0d9e84d744c3fedb76b476b8e03e";
-    private static final String juheNewsBaseUrl = "http://v.juhe.cn/toutiao/index?type=";
+    public static final String juheKey = "b74b0d9e84d744c3fedb76b476b8e03e";
+    public static final String juheNewsBaseUrl = "http://v.juhe.cn/toutiao/";
     public static final String[] newsTitles = new String[]{
             "头条",
             "社会",

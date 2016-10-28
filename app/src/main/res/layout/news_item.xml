@@ -20,11 +20,11 @@
             android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
             app:actualImageScaleType="fitXY"
-            app:placeholderImage="@mipmap/demopic"
+            app:placeholderImage="@drawable/default_thumbnail"
             app:placeholderImageScaleType="fitXY"/>
         <TextView
             android:id="@+id/news_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
@@ -36,7 +36,7 @@
             android:textSize="@dimen/textSize17"/>
 
         <TextView
-            android:id="@+id/news_realType"
+            android:id="@+id/news_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/news_thumbnail"
