@@ -40,7 +40,6 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
     public static final String TYPE = "type";
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private Handler mHandler;
     private Context mContext;
     private JuHeNewsService mJuHeNewsService;
     private static final int DEFAULT_ITEM_SIZE = 10;
@@ -61,6 +60,38 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
         return pagerFragment;
     }
 
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == MSG_CODE_REFRESH) {
+                Call<NewsResult> call = mJuHeNewsService.getNewsData(type, NewsAPI.juheKey);
+                call.enqueue(new retrofit2.Callback<NewsResult>() {
+                    @Override
+                    public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
+                        NewsResult result = response.body();
+                        mNewsBeanList = result.getResult().getData();
+                        Log.d(TAG, mNewsBeanList.get(0).getTitle());
+                        mAdapter = new NewsItemAdapter(mContext, mNewsBeanList, type.equals("top"));
+                        mAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Call<NewsResult> call, Throwable t) {
+                        Log.d(TAG, "get data failed");
+                    }
+                });
+                mSwipeRefreshLayout.setRefreshing(false);
+            } else if (msg.what == MSG_CODE_LOADMORE) {
+                if (mAdapter.getItemCount() == DEFAULT_ITEM_SIZE + ITEM_SIZE_OFFSET) {
+                    CommonUtils.makeShortToast(getString(R.string.nomoredata));
+                } else {
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        }
+    };
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,37 +102,6 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         mJuHeNewsService = juHeRetrofit.create(JuHeNewsService.class);
-        mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (msg.what == MSG_CODE_REFRESH) {
-                    Call<NewsResult> call = mJuHeNewsService.getNewsData(type, NewsAPI.juheKey);
-                    call.enqueue(new retrofit2.Callback<NewsResult>() {
-                        @Override
-                        public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
-                            NewsResult result = response.body();
-                            mNewsBeanList = result.getResult().getData();
-                            Log.d(TAG, mNewsBeanList.get(0).getTitle());
-                            mAdapter = new NewsItemAdapter(mContext, mNewsBeanList, type.equals("top"));
-                            mAdapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onFailure(Call<NewsResult> call, Throwable t) {
-                            Log.d(TAG, "get data failed");
-                        }
-                    });
-                    mSwipeRefreshLayout.setRefreshing(false);
-                } else if (msg.what == MSG_CODE_LOADMORE) {
-                    if (mAdapter.getItemCount() == DEFAULT_ITEM_SIZE + ITEM_SIZE_OFFSET) {
-                        CommonUtils.makeShortToast(getString(R.string.nomoredata));
-                    } else {
-                        mAdapter.notifyDataSetChanged();
-                    }
-                }
-            }
-        };
     }
 
     @Nullable

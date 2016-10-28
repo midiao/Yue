@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mNewsFragment = new NewsFragment();
         initViews();
-        new NewsPagerPresenter(mNewsFragment);
     }
 
     @Override
