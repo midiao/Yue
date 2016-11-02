@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.superjunior.yue.net.NewsAPI;
+import com.superjunior.yue.net.JuHeNewsAPI;
 
 /**
  * Created by lqynydyxf on 2016/10/23.
@@ -18,17 +18,19 @@ public class NewsFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return NewsPagerFragment.newInstance(NewsAPI.newsTypes[position]);
+        NewsPagerFragment fragment = NewsPagerFragment.newInstance(JuHeNewsAPI.newsTypes[position]);
+        new NewsPagerPresenter(fragment);
+        return fragment;
     }
 
     @Override
     public int getCount() {
-        return NewsAPI.newsTypes.length;
+        return JuHeNewsAPI.newsTypes.length;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return NewsAPI.newsTitles[position];
+        return JuHeNewsAPI.newsTitles[position];
     }
 
 }
