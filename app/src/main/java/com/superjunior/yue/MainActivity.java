@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.superjunior.yue.news.NewsFragment;
-import com.superjunior.yue.news.NewsPagerPresenter;
 import com.superjunior.yue.util.ActivityUtils;
 import com.superjunior.yue.util.CommonUtils;
 
@@ -66,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
         mToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.material_grey_200));
         setSupportActionBar(mToolbar);
 
-        ActionBar ab = getSupportActionBar();
-        CommonUtils.checkNotNull(ab).setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        CommonUtils.checkNotNull(actionBar).setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(CommonUtils.checkNotNull(mNavigationView));

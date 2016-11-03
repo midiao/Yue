@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.superjunior.yue.R;
-import com.superjunior.yue.YueApplication;
+import com.superjunior.yue.base.YueApplication;
 import com.superjunior.yue.util.CommonUtils;
 
 /**
@@ -110,6 +110,7 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
     public String getType() {
         return type;
     }
+
 
     private int getColor(int id) {
         return getResources().getColor(id);

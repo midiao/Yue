@@ -1,4 +1,4 @@
-package com.superjunior.yue;
+package com.superjunior.yue.base;
 
 /**
  * Created by cb8695 on 2016/10/20.

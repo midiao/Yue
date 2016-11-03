@@ -30,7 +30,7 @@ public class NewsFragment extends Fragment {
         mViewPager = (ViewPager) contentView.findViewById(R.id.news_viewPager);
         mTabLayout = (TabLayout) contentView.findViewById(R.id.news_tabLayout);
         mPagerAdapter = new NewsFragmentPagerAdapter(getFragmentManager());
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(4);
         mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         return contentView;

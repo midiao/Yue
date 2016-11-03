@@ -7,7 +7,7 @@ import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import com.superjunior.yue.R;
-import com.superjunior.yue.YueApplication;
+import com.superjunior.yue.base.YueApplication;
 
 /**
  * Created by cb8695 on 2016/10/20.
@@ -15,7 +15,7 @@ import com.superjunior.yue.YueApplication;
 
 public class CommonUtils {
     private static ProgressDialog loadingProgressCircle = null;
-    private static Context mContext = YueApplication.getContext();
+    public static final String URI = "uri";
 
     public static <T> T checkNotNull(T reference) {
         if (reference == null) {
@@ -31,8 +31,8 @@ public class CommonUtils {
 
     public static void showLoadingProgress(final String title, final String msg, final boolean cancelableFlag) {
         if (loadingProgressCircle == null) {
-            loadingProgressCircle = ProgressDialog.show(mContext, title, msg, true, cancelableFlag);
-            loadingProgressCircle.setIndeterminateDrawable(mContext.getResources().getDrawable(R.drawable.loading_anim));
+            loadingProgressCircle = ProgressDialog.show(YueApplication.getContext(), title, msg, true, cancelableFlag);
+            loadingProgressCircle.setIndeterminateDrawable(YueApplication.getContext().getResources().getDrawable(R.drawable.loading_anim));
         } else {
             loadingProgressCircle.setCancelable(cancelableFlag);
             loadingProgressCircle.setMessage(msg);
@@ -47,14 +47,12 @@ public class CommonUtils {
     }
 
     public static boolean isNetworkConnected() {
-        if (mContext != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) mContext
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) YueApplication.getContext()
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
             if (mNetworkInfo != null) {
                 return mNetworkInfo.isAvailable();
             }
-        }
         return false;
     }
 }

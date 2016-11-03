@@ -1,6 +1,7 @@
 package com.superjunior.yue.news;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +15,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.superjunior.yue.R;
+import com.superjunior.yue.base.YueApplication;
 import com.superjunior.yue.model.NewsBean;
+import com.superjunior.yue.util.CommonUtils;
 
 import java.util.List;
 
@@ -27,10 +30,10 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
     private List<NewsBean> mNewsBeanList;
     private boolean mIsTop;
 
-    public NewsItemAdapter(Context context, List<NewsBean> beanList, boolean isTop) {
-        this.mContext = context;
-        this.mNewsBeanList = beanList;
-        this.mIsTop = isTop;
+    NewsItemAdapter(List<NewsBean> beanList, boolean isTop) {
+        mContext = YueApplication.getContext();
+        mNewsBeanList = beanList;
+        mIsTop = isTop;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        NewsBean bean = mNewsBeanList.get(position);
+        final NewsBean bean = mNewsBeanList.get(position);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(bean.getThumbnail_pic_s()))
                 .setProgressiveRenderingEnabled(true)
                 .build();
@@ -49,6 +52,16 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
                 .setImageRequest(request)
                 .setOldController(holder.thumbnail.getController())
                 .build();
+        holder.parent_iew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(mContext, NewsDetailActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(CommonUtils.URI, bean.getUrl());
+                mContext.startActivity(intent);
+            }
+        });
         holder.thumbnail.setController(controller);
         holder.title.setText(bean.getTitle());
         //如果是头条新闻，显示新闻类型；反之，则显示新闻源
@@ -65,14 +78,16 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        View parent_iew;
         SimpleDraweeView thumbnail;
         TextView title;
         TextView info;
         ViewHolder(View itemView) {
             super(itemView);
-            thumbnail = (SimpleDraweeView) itemView.findViewById(R.id.news_thumbnail);
-            title = (TextView) itemView.findViewById(R.id.news_title);
-            info = (TextView) itemView.findViewById(R.id.news_info);
+            parent_iew = itemView.findViewById(R.id.news_parent_view);
+            thumbnail = (SimpleDraweeView) parent_iew.findViewById(R.id.news_thumbnail);
+            title = (TextView) parent_iew.findViewById(R.id.news_title);
+            info = (TextView) parent_iew.findViewById(R.id.news_info);
         }
     }
 }
