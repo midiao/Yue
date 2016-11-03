@@ -2,7 +2,6 @@ package com.superjunior.yue;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -62,16 +61,14 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.setStatusBarBackground(R.color.material_grey_200);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.material_grey_200));
+        mToolbar.setTitleTextColor(CommonUtils.getColor(R.color.material_white));
+        mToolbar.setTitle(R.string.news);
         setSupportActionBar(mToolbar);
-
         ActionBar actionBar = getSupportActionBar();
         CommonUtils.checkNotNull(actionBar).setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(CommonUtils.checkNotNull(mNavigationView));
-
         ActivityUtils.addFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
     }
 
@@ -82,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.news_navigation_menu_item:
-                                setTitle(getString(R.string.news));
+                                mToolbar.setTitle(R.string.news);
                                 ActivityUtils.replaceFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
                                 break;
                             case R.id.science_navigation_menu_item:
-                                setTitle(getString(R.string.science));
+                                mToolbar.setTitle(R.string.science);
                                 ActivityUtils.replaceFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
                                 break;
                             default:

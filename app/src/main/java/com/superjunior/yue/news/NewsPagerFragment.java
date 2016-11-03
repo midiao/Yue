@@ -52,8 +52,8 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
         mSwipeRefreshLayout = (SwipeRefreshLayout) contentView.findViewById(R.id.news_swipeRefreshLayout);
         mRecyclerView = (RecyclerView) contentView.findViewById(R.id.news_recyclerView);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        mSwipeRefreshLayout.setColorSchemeColors(getColor(R.color.material_blue_500), getColor(R.color.material_red_500),
-                getColor(R.color.material_yellow_500));
+        mSwipeRefreshLayout.setColorSchemeColors(CommonUtils.getColor(R.color.material_blue_500), CommonUtils.getColor(R.color.material_red_500),
+                CommonUtils.getColor(R.color.material_yellow_500));
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -109,11 +109,6 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public String getType() {
         return type;
-    }
-
-
-    private int getColor(int id) {
-        return getResources().getColor(id);
     }
 
 }
