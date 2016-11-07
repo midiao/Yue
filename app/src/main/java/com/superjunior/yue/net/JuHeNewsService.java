@@ -1,6 +1,6 @@
 package com.superjunior.yue.net;
 
-import com.superjunior.yue.model.NewsResult;
+import com.superjunior.yue.model.news.NewsResult;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

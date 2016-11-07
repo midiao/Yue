@@ -1,4 +1,4 @@
-package com.superjunior.yue.news;
+package com.superjunior.yue.ui.news;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;

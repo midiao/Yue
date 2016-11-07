@@ -1,4 +1,4 @@
-package com.superjunior.yue.model;
+package com.superjunior.yue.model.news;
 
 import java.util.List;
 

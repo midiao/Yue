@@ -1,6 +1,4 @@
-package com.superjunior.yue.news;
-
-import android.content.Context;
+package com.superjunior.yue.ui.news;
 
 import com.superjunior.yue.base.BasePresenter;
 import com.superjunior.yue.base.BaseView;

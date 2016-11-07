@@ -1,4 +1,4 @@
-package com.superjunior.yue.news;
+package com.superjunior.yue.ui.news;
 
 import com.superjunior.yue.base.BaseDetailActivity;
 import com.superjunior.yue.util.CommonUtils;

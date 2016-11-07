@@ -1,4 +1,4 @@
-package com.superjunior.yue.news;
+package com.superjunior.yue.ui.news;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.superjunior.yue.R;
 import com.superjunior.yue.base.YueApplication;
-import com.superjunior.yue.model.NewsBean;
+import com.superjunior.yue.model.news.NewsBean;
 import com.superjunior.yue.util.CommonUtils;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.superjunior.yue.news;
+package com.superjunior.yue.ui.news;
 
 import android.content.Context;
 import android.os.Bundle;

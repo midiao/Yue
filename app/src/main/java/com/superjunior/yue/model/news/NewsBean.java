@@ -1,4 +1,4 @@
-package com.superjunior.yue.model;
+package com.superjunior.yue.model.news;
 
 /**
  * Created by cb8695 on 2016/10/20.

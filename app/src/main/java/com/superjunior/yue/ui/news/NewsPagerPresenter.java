@@ -1,11 +1,9 @@
-package com.superjunior.yue.news;
+package com.superjunior.yue.ui.news;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.superjunior.yue.base.YueApplication;
-import com.superjunior.yue.model.NewsBean;
-import com.superjunior.yue.model.NewsResult;
+import com.superjunior.yue.model.news.NewsBean;
+import com.superjunior.yue.model.news.NewsResult;
 import com.superjunior.yue.net.JuHeNewsAPI;
 import com.superjunior.yue.net.JuHeNewsService;
 import com.superjunior.yue.util.CommonUtils;
@@ -31,10 +29,8 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
     private List<NewsBean> mNewsBeanList = new ArrayList<>();
     private NewsPagerContract.View mView;
     private NewsItemAdapter mAdapter;
-    private Context mContext;
 
     NewsPagerPresenter(NewsPagerContract.View view) {
-        mContext = YueApplication.getContext();
         mView = CommonUtils.checkNotNull(view);
         mRetrofit = new Retrofit.Builder().client(new OkHttpClient())
                 .baseUrl(JuHeNewsAPI.juheNewsBaseUrl)

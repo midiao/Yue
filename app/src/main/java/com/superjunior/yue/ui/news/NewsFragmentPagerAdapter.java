@@ -1,4 +1,4 @@
-package com.superjunior.yue.news;
+package com.superjunior.yue.ui.news;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

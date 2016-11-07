@@ -1,4 +1,4 @@
-package com.superjunior.yue;
+package com.superjunior.yue.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,7 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.superjunior.yue.news.NewsFragment;
+import com.superjunior.yue.R;
+import com.superjunior.yue.ui.news.NewsFragment;
 import com.superjunior.yue.util.ActivityUtils;
 import com.superjunior.yue.util.CommonUtils;
 
