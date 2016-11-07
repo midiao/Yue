@@ -5,9 +5,9 @@ package com.superjunior.yue.net;
  */
 
 public class JuHeNewsAPI {
-    public static final String juheKey = "b74b0d9e84d744c3fedb76b476b8e03e";
-    public static final String juheNewsBaseUrl = "http://v.juhe.cn/toutiao/";
-    public static final String[] newsTitles = new String[]{
+    public static final String JUHE_KEY = "b74b0d9e84d744c3fedb76b476b8e03e";
+    public static final String JUHE_NEWS_BASE_Url = "http://v.juhe.cn/toutiao/";
+    public static final String[] NEWS_TITLES = new String[]{
             "头条",
             "社会",
             "国内",
@@ -19,7 +19,7 @@ public class JuHeNewsAPI {
             "财经",
             "时尚"
     };
-    public static final String[] newsTypes = new String[]{
+    public static final String[] NEWS_TYPES = new String[]{
             "top", //头条
             "shehui", //社会
             "guonei", //国内

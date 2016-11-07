@@ -6,19 +6,6 @@ package com.superjunior.yue.model.news;
 
 public class NewsBean {
 
-    /**
-     * title : 东方八卦：张雨绮献身过夜神秘富豪，杨洋李沁嘴对嘴吃鸡
-     * date : 2016-10-26 11:05
-     * author_name : 东方头条
-     * thumbnail_pic_s : http://06.imgmini.eastday.com/mobile/20161026/20161026110515_c971729badf7f3b5535a59fddb38a59a_1_mwpm_03200403.jpg
-     * thumbnail_pic_s02 : http://06.imgmini.eastday.com/mobile/20161026/20161026110515_c971729badf7f3b5535a59fddb38a59a_1_mwpl_05500201.jpg
-     * thumbnail_pic_s03 : http://06.imgmini.eastday.com/mobile/20161026/20161026110515_c971729badf7f3b5535a59fddb38a59a_1_mwpl_05500201.jpg
-     * url : http://mini.eastday.com/mobile/161026110515482.html?qid=juheshuju
-     * uniquekey : 161026110515482
-     * type : 头条
-     * realtype : 娱乐
-     */
-
     private String title;
     private String date;
     private String author_name;

@@ -6,7 +6,7 @@ import java.util.List;
  * Created by cb8695 on 2016/11/7.
  */
 
-public class ZhiHuDailyResult {
+public class DailyLatestResult {
 
     private String date;
 

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.superjunior.yue.R;
-import com.superjunior.yue.util.CommonUtils;
+
 
 /**
  * A placeholder fragment containing a simple view.

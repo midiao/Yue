@@ -18,19 +18,19 @@ public class NewsFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        NewsPagerFragment fragment = NewsPagerFragment.newInstance(JuHeNewsAPI.newsTypes[position]);
+        NewsPagerFragment fragment = NewsPagerFragment.newInstance(JuHeNewsAPI.NEWS_TYPES[position]);
         new NewsPagerPresenter(fragment);
         return fragment;
     }
 
     @Override
     public int getCount() {
-        return JuHeNewsAPI.newsTypes.length;
+        return JuHeNewsAPI.NEWS_TYPES.length;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return JuHeNewsAPI.newsTitles[position];
+        return JuHeNewsAPI.NEWS_TITLES[position];
     }
 
 }

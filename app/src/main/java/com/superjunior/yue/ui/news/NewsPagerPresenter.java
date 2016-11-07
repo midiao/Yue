@@ -33,7 +33,7 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
     NewsPagerPresenter(NewsPagerContract.View view) {
         mView = CommonUtils.checkNotNull(view);
         mRetrofit = new Retrofit.Builder().client(new OkHttpClient())
-                .baseUrl(JuHeNewsAPI.juheNewsBaseUrl)
+                .baseUrl(JuHeNewsAPI.JUHE_NEWS_BASE_Url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         mJuHeNewsService = mRetrofit.create(JuHeNewsService.class);
@@ -41,7 +41,7 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
     }
     @Override
     public void initAdapter() {
-        Call<NewsResult> call = mJuHeNewsService.getNewsData(mView.getType(), JuHeNewsAPI.juheKey);
+        Call<NewsResult> call = mJuHeNewsService.getNewsData(mView.getType(), JuHeNewsAPI.JUHE_KEY);
         call.enqueue(new retrofit2.Callback<NewsResult>() {
             @Override
             public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
@@ -60,7 +60,7 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
 
     @Override
     public void onRefresh() {
-        Call<NewsResult> call = mJuHeNewsService.getNewsData(mView.getType(), JuHeNewsAPI.juheKey);
+        Call<NewsResult> call = mJuHeNewsService.getNewsData(mView.getType(), JuHeNewsAPI.JUHE_KEY);
         call.clone().enqueue(new retrofit2.Callback<NewsResult>() {
             @Override
             public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {

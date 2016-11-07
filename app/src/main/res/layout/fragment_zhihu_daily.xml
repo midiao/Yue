@@ -1,10 +1,26 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/daily_swipeRefreshLayout"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.superjunior.yue.ui.news.NewsDetailActivity">
+    android:layout_width="match_parent"
+    android:background="@color/material_grey_200">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <com.bigkoo.convenientbanner.ConvenientBanner
+            android:id="@+id/top_banner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:canLoop="true"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/daily_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
