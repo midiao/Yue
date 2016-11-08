@@ -64,7 +64,7 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
                 mSwipeRefreshLayout.setRefreshing(true);
             }
         });
-        mPresenter.initAdapter();
+        mPresenter.start();
         mSwipeRefreshLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -77,7 +77,6 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
     }
 
     @Override

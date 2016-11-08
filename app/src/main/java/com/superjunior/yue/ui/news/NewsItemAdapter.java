@@ -43,7 +43,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         final NewsBean bean = mNewsBeanList.get(position);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(bean.getThumbnail_pic_s()))
                 .setProgressiveRenderingEnabled(true)
@@ -59,6 +59,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
                 intent.setClass(mContext, NewsDetailActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(CommonUtils.URI, bean.getUrl());
+                holder.title.setTextColor(CommonUtils.getColor(R.color.material_grey_400));
                 mContext.startActivity(intent);
             }
         });
