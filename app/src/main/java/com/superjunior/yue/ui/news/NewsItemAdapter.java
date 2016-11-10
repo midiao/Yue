@@ -59,7 +59,6 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
                 intent.setClass(mContext, NewsDetailActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(CommonUtils.URI, bean.getUrl());
-                holder.title.setTextColor(CommonUtils.getColor(R.color.material_grey_400));
                 mContext.startActivity(intent);
             }
         });
