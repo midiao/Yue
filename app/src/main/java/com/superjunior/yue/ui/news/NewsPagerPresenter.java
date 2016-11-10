@@ -47,7 +47,7 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
             public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
                 NewsResult result = response.body();
                 mNewsBeanList = result.getResult().getData();
-                mAdapter = new NewsItemAdapter(mNewsBeanList, mView.getType().equals("top"));
+                mAdapter = new NewsItemAdapter(mView.getActivityContext(), mNewsBeanList, mView.getType().equals("top"));
                 mView.setAdapter(mAdapter);
             }
 
@@ -66,7 +66,7 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
             public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
                 NewsResult result = response.body();
                 mNewsBeanList = result.getResult().getData();
-                mAdapter = new NewsItemAdapter(mNewsBeanList, mView.getType().equals("top"));
+                mAdapter = new NewsItemAdapter(mView.getActivityContext(), mNewsBeanList, mView.getType().equals("top"));
                 mAdapter.notifyDataSetChanged();
             }
 

@@ -15,7 +15,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.superjunior.yue.R;
-import com.superjunior.yue.base.YueApplication;
 import com.superjunior.yue.model.news.NewsBean;
 import com.superjunior.yue.util.CommonUtils;
 
@@ -30,8 +29,8 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
     private List<NewsBean> mNewsBeanList;
     private boolean mIsTop;
 
-    NewsItemAdapter(List<NewsBean> beanList, boolean isTop) {
-        mContext = YueApplication.getContext();
+    NewsItemAdapter(Context context, List<NewsBean> beanList, boolean isTop) {
+        mContext = context;
         mNewsBeanList = beanList;
         mIsTop = isTop;
     }

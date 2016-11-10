@@ -1,5 +1,7 @@
 package com.superjunior.yue.ui.news;
 
+import android.content.Context;
+
 import com.superjunior.yue.base.BasePresenter;
 import com.superjunior.yue.base.BaseView;
 
@@ -16,6 +18,8 @@ public interface NewsPagerContract {
         void setAdapter(NewsItemAdapter adapter);
 
         String getType();
+
+        Context getActivityContext();
 
     }
 

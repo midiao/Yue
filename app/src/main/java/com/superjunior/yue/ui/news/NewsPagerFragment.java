@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.superjunior.yue.R;
-import com.superjunior.yue.base.YueApplication;
 import com.superjunior.yue.util.CommonUtils;
 
 /**
@@ -41,7 +40,7 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = YueApplication.getContext();
+        mContext = getActivity();
         type = getArguments().getString(TYPE);
     }
 
@@ -110,4 +109,8 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
         return type;
     }
 
+    @Override
+    public Context getActivityContext() {
+        return mContext;
+    }
 }
