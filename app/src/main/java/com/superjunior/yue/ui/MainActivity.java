@@ -2,6 +2,8 @@ package com.superjunior.yue.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -12,6 +14,8 @@ import android.view.MenuItem;
 
 import com.superjunior.yue.R;
 import com.superjunior.yue.ui.news.NewsFragment;
+import com.superjunior.yue.ui.zhihudaily.ZhiHuDailyFragment;
+import com.superjunior.yue.ui.zhihudaily.ZhiHuDailyPresenter;
 import com.superjunior.yue.util.ActivityUtils;
 import com.superjunior.yue.util.CommonUtils;
 
@@ -21,12 +25,15 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private Toolbar mToolbar;
     private NewsFragment mNewsFragment;
+    private ZhiHuDailyFragment mDailyFragment;
+    private Fragment mCurrentFragment;
+    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mNewsFragment = new NewsFragment();
+        mFragmentManager = getSupportFragmentManager();
         initViews();
     }
 
@@ -70,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(CommonUtils.checkNotNull(mNavigationView));
+        mNewsFragment = new NewsFragment();
+        mDailyFragment = new ZhiHuDailyFragment();
+        mCurrentFragment = mNewsFragment;
         ActivityUtils.addFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
     }
 
@@ -81,11 +91,14 @@ public class MainActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()) {
                             case R.id.news_navigation_menu_item:
                                 mToolbar.setTitle(R.string.news);
-                                ActivityUtils.replaceFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
+                                ActivityUtils.switchFragment(mFragmentManager, mCurrentFragment, mNewsFragment);
+                                mCurrentFragment = mNewsFragment;
                                 break;
                             case R.id.science_navigation_menu_item:
-                                mToolbar.setTitle(R.string.science);
-                                ActivityUtils.replaceFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
+                                mToolbar.setTitle(R.string.zhihudaily);
+                                new ZhiHuDailyPresenter(mDailyFragment);
+                                ActivityUtils.switchFragment(mFragmentManager, mCurrentFragment, mDailyFragment);
+                                mCurrentFragment = mDailyFragment;
                                 break;
                             default:
                                 break;

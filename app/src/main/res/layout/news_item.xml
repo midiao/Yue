@@ -21,6 +21,7 @@
             android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
             app:actualImageScaleType="fitXY"
+            app:failureImage="@drawable/load_failed"
             app:placeholderImage="@drawable/default_thumbnail"
             app:placeholderImageScaleType="fitXY"/>
         <TextView

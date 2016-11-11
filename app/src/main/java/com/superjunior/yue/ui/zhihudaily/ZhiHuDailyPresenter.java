@@ -30,7 +30,7 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
     private ZhiHuDailyService mDailyService;
     private ZhiHuDailyResult mDailyResult;
 
-    ZhiHuDailyPresenter(ZhiHuDailyContract.View view) {
+    public ZhiHuDailyPresenter(ZhiHuDailyContract.View view) {
         mView = view;
         mRetrofit = new Retrofit.Builder().client(new OkHttpClient())
                 .baseUrl(ZhiHuDailyAPI.ZHIHU_DAILY_BASE_URL)
@@ -54,6 +54,7 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
                 mDailyResult = response.body();
                 mStoryBeanList = mDailyResult.getStories();
                 mTopStoryBeanList = mDailyResult.getTop_stories();
+                mView.setBannerPages(mTopStoryBeanList);
             }
 
             @Override
@@ -65,7 +66,8 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
 
     @Override
     public void onRefresh() {
-
+        initDailyData();
+        mView.refreshCompleted();
     }
 
     @Override

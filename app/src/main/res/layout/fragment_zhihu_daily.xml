@@ -7,20 +7,26 @@
     android:layout_width="match_parent"
     android:background="@color/material_grey_200">
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <com.bigkoo.convenientbanner.ConvenientBanner
-            android:id="@+id/top_banner"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:canLoop="true"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/daily_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/top_banner"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:canLoop="true"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/daily_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
 </android.support.v4.widget.SwipeRefreshLayout>

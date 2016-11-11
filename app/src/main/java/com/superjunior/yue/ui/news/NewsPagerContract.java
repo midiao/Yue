@@ -16,7 +16,7 @@ public interface NewsPagerContract {
 
         void refreshCompleted();
 
-        void setAdapter(NewsItemAdapter adapter);
+        void setRecyclerViewAdapter(NewsItemAdapter adapter);
 
         String getType();
 

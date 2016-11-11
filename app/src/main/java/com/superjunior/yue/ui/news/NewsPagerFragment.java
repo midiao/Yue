@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.superjunior.yue.R;
 import com.superjunior.yue.model.news.NewsBean;
 import com.superjunior.yue.util.CommonUtils;
+import com.superjunior.yue.util.Constants;
 
 /**
  * Created by lqynydyxf on 2016/10/23.
@@ -24,7 +25,6 @@ import com.superjunior.yue.util.CommonUtils;
 public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, NewsPagerContract.View {
     private static final String TAG = "NewsPagerFragment";
     public static final String TYPE = "type";
-    private int DEFAULT_TIME = 2000;
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private Context mContext;
@@ -71,7 +71,7 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
-        }, DEFAULT_TIME);
+        }, Constants.REFRESHING_TIME);
         return contentView;
     }
 
@@ -87,7 +87,7 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
             public void run() {
                 mPresenter.onRefresh();
             }
-        }, DEFAULT_TIME);
+        }, Constants.REFRESHING_TIME);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
     @Override
-    public void setAdapter(NewsItemAdapter adapter) {
+    public void setRecyclerViewAdapter(NewsItemAdapter adapter) {
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -119,7 +119,7 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public void startDetailActivity(NewsBean bean) {
         Intent intent = new Intent(mContext, NewsDetailActivity.class);
-        intent.putExtra(CommonUtils.URI, bean.getUrl());
+        intent.putExtra(Constants.URI, bean.getUrl());
         startActivity(intent);
     }
 }

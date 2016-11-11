@@ -1,7 +1,5 @@
 package com.superjunior.yue.ui.news;
 
-import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -57,7 +55,7 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
                         mView.startDetailActivity(bean);
                     }
                 });
-                mView.setAdapter(mAdapter);
+                mView.setRecyclerViewAdapter(mAdapter);
             }
 
             @Override
@@ -70,7 +68,7 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
     @Override
     public void onRefresh() {
         Call<NewsResult> call = mJuHeNewsService.getNewsData(mView.getType(), JuHeNewsAPI.JUHE_KEY);
-        call.clone().enqueue(new retrofit2.Callback<NewsResult>() {
+        call.enqueue(new retrofit2.Callback<NewsResult>() {
             @Override
             public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
                 NewsResult result = response.body();

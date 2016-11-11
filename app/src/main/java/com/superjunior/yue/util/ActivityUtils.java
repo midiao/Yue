@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.superjunior.yue.R;
+
 /**
  * Created by cb8695 on 2016/10/20.
  */
@@ -20,22 +22,12 @@ public class ActivityUtils {
         transaction.commit();
     }
 
-    public static void replaceFragment(@NonNull FragmentManager fragmentManager,
-                                       @NonNull Fragment fragment, int fragmentId) {
-
-        CommonUtils.checkNotNull(fragmentManager);
-        CommonUtils.checkNotNull(fragment);
+    public static void switchFragment(FragmentManager fragmentManager, Fragment oldFragment, Fragment newFragment) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(fragmentId, fragment);
-        transaction.commit();
-    }
-
-    public static void removeFragment(@NonNull FragmentManager fragmentManager,
-                                      @NonNull Fragment fragment) {
-        CommonUtils.checkNotNull(fragmentManager);
-        CommonUtils.checkNotNull(fragment);
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.remove(fragment);
-        transaction.commit();
+        if (newFragment.isAdded()) {
+            transaction.hide(oldFragment).show(newFragment).commit();
+        } else {
+            transaction.hide(oldFragment).add(R.id.contentFrame, newFragment).commit();
+        }
     }
 }

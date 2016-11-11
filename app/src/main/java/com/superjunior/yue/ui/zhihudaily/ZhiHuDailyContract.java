@@ -13,7 +13,8 @@ import java.util.List;
 
 public interface ZhiHuDailyContract {
     interface View extends BaseView<Presenter> {
-
+        void refreshCompleted();
+        void setBannerPages(List<TopStoryBean> topStoryBeanList);
     }
 
     interface Presenter extends BasePresenter {
