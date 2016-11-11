@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ToxicBakery.viewpager.transforms.AccordionTransformer;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.ConvenientBanner.PageIndicatorAlign;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -58,7 +59,8 @@ public class ZhiHuDailyFragment extends Fragment implements ZhiHuDailyContract.V
                 return new TopBannerHolderView();
             }
         }, topStoryBeanList).setPageIndicator(new int[]{R.drawable.banner_indicator_default, R.drawable.banner_indicator_focus})
-                .setPageIndicatorAlign(PageIndicatorAlign.ALIGN_PARENT_RIGHT)
+                .setPageIndicatorAlign(PageIndicatorAlign.CENTER_HORIZONTAL)
+                .setPageTransformer(new AccordionTransformer())
                 .setOnItemClickListener(this);
     }
 
