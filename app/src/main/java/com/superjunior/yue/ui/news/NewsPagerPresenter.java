@@ -32,7 +32,6 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
     private List<NewsBean> mNewsBeanList = new ArrayList<>();
     private NewsPagerContract.View mView;
     private NewsItemAdapter mAdapter;
-    private Context mContext;
 
     NewsPagerPresenter(NewsPagerContract.View view) {
         mView = CommonUtils.checkNotNull(view);
@@ -41,7 +40,6 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         mJuHeNewsService = mRetrofit.create(JuHeNewsService.class);
-        mContext = view.getActivityContext();
         mView.setPresenter(this);
     }
     @Override
@@ -55,8 +53,8 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
                 mAdapter = new NewsItemAdapter(mView.getActivityContext(), mNewsBeanList, mView.getType().equals("top"));
                 mAdapter.setOnItemClickListener(new NewsItemAdapter.onRecyclerViewItemClickListener() {
                     @Override
-                    public void onItemClick(View view, NewsBean bean, int position) {
-                        mView.startDetailActivity(bean, position);
+                    public void onItemClick(View view, NewsBean bean) {
+                        mView.startDetailActivity(bean);
                     }
                 });
                 mView.setAdapter(mAdapter);
@@ -87,14 +85,6 @@ public class NewsPagerPresenter implements NewsPagerContract.Presenter {
             }
         });
         mView.refreshCompleted();
-    }
-
-    @Override
-    public void onResult(int request, int result, Intent data) {
-        if (NewsDetailActivity.REQUEST_START == request && NewsDetailActivity.RESULT_CODE == result) {
-            int position = CommonUtils.checkNotNull(data.getIntExtra(CommonUtils.POSTION, -1));
-            mAdapter.notifyItemChanged(position);
-        }
     }
 
     @Override

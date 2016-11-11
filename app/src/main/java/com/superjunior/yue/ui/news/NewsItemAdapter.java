@@ -1,6 +1,7 @@
 package com.superjunior.yue.ui.news;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,7 +57,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
             public void onClick(View v) {
                 bean.setClicked(true);
                 holder.title.setTextColor(CommonUtils.getColor(R.color.material_grey_500));
-                mOnItemClickListener.onItemClick(v, bean, position);
+                mOnItemClickListener.onItemClick(v, bean);
             }
         });
         holder.thumbnail.setController(controller);
@@ -94,6 +95,6 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
     }
 
     interface onRecyclerViewItemClickListener {
-        void onItemClick(View view, NewsBean bean, int position);
+        void onItemClick(View view, NewsBean bean);
     }
 }

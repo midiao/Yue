@@ -1,7 +1,6 @@
 package com.superjunior.yue.ui.news;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.superjunior.yue.base.BasePresenter;
 import com.superjunior.yue.base.BaseView;
@@ -23,7 +22,7 @@ public interface NewsPagerContract {
 
         Context getActivityContext();
 
-        void startDetailActivity(NewsBean bean, int position);
+        void startDetailActivity(NewsBean bean);
 
     }
 
@@ -31,7 +30,5 @@ public interface NewsPagerContract {
         void initAdapter();
 
         void onRefresh();
-
-        void onResult(int request, int result, Intent data);
     }
 }

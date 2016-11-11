@@ -117,15 +117,9 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
     @Override
-    public void startDetailActivity(NewsBean bean, int position) {
+    public void startDetailActivity(NewsBean bean) {
         Intent intent = new Intent(mContext, NewsDetailActivity.class);
         intent.putExtra(CommonUtils.URI, bean.getUrl());
-        intent.putExtra(CommonUtils.POSTION, position);
-        startActivityForResult(intent, NewsDetailActivity.REQUEST_START);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mPresenter.onResult(requestCode, resultCode, data);
+        startActivity(intent);
     }
 }
