@@ -1,7 +1,6 @@
 package com.superjunior.yue.ui.news;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,6 +27,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
     private Context mContext;
     private List<NewsBean> mNewsBeanList;
     private boolean mIsTop;
+    private onRecyclerViewItemClickListener mOnItemClickListener = null;
 
     NewsItemAdapter(Context context, List<NewsBean> beanList, boolean isTop) {
         mContext = context;
@@ -42,7 +42,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final NewsBean bean = mNewsBeanList.get(position);
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(bean.getThumbnail_pic_s()))
                 .setProgressiveRenderingEnabled(true)
@@ -54,15 +54,14 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
         holder.parent_iew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(mContext, NewsDetailActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(CommonUtils.URI, bean.getUrl());
-                mContext.startActivity(intent);
+                bean.setClicked(true);
+                holder.title.setTextColor(CommonUtils.getColor(R.color.material_grey_500));
+                mOnItemClickListener.onItemClick(v, bean, position);
             }
         });
         holder.thumbnail.setController(controller);
         holder.title.setText(bean.getTitle());
+        holder.title.setTextColor(CommonUtils.getColor(bean.isClicked() ? R.color.material_grey_500 : R.color.material_textBlack_black));
         //如果是头条新闻，显示新闻类型；反之，则显示新闻源
         if (mIsTop) {
             holder.info.setText(bean.getRealtype());
@@ -88,5 +87,13 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.ViewHo
             title = (TextView) parent_iew.findViewById(R.id.news_title);
             info = (TextView) parent_iew.findViewById(R.id.news_info);
         }
+    }
+
+    void setOnItemClickListener(onRecyclerViewItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
+    interface onRecyclerViewItemClickListener {
+        void onItemClick(View view, NewsBean bean, int position);
     }
 }

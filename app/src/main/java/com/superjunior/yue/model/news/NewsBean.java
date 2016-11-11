@@ -16,6 +16,7 @@ public class NewsBean {
     private String uniquekey;
     private String type;
     private String realtype;
+    private boolean isClicked = false;
 
     public String getTitle() {
         return title;
@@ -96,4 +97,13 @@ public class NewsBean {
     public void setRealtype(String realtype) {
         this.realtype = realtype;
     }
+
+    public boolean isClicked() {
+        return isClicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        isClicked = clicked;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.superjunior.yue.ui.news;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.superjunior.yue.R;
+import com.superjunior.yue.model.news.NewsBean;
 import com.superjunior.yue.util.CommonUtils;
 
 /**
@@ -112,5 +114,18 @@ public class NewsPagerFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public Context getActivityContext() {
         return mContext;
+    }
+
+    @Override
+    public void startDetailActivity(NewsBean bean, int position) {
+        Intent intent = new Intent(mContext, NewsDetailActivity.class);
+        intent.putExtra(CommonUtils.URI, bean.getUrl());
+        intent.putExtra(CommonUtils.POSTION, position);
+        startActivityForResult(intent, NewsDetailActivity.REQUEST_START);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mPresenter.onResult(requestCode, resultCode, data);
     }
 }

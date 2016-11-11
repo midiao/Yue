@@ -18,6 +18,7 @@ import static com.superjunior.yue.base.YueApplication.getContext;
 public class CommonUtils {
     private static ProgressDialog loadingProgressCircle = null;
     public static final String URI = "uri";
+    public static final String POSTION = "position";
 
     public static <T> T checkNotNull(T reference) {
         if (reference == null) {
