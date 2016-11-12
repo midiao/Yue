@@ -7,19 +7,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.superjunior.yue.R;
+import com.superjunior.yue.base.BaseActivity;
 import com.superjunior.yue.ui.news.NewsFragment;
 import com.superjunior.yue.ui.zhihudaily.ZhiHuDailyFragment;
 import com.superjunior.yue.ui.zhihudaily.ZhiHuDailyPresenter;
 import com.superjunior.yue.util.ActivityUtils;
 import com.superjunior.yue.util.CommonUtils;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
@@ -63,11 +63,9 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-    private void initViews() {
+    @Override
+    protected void initViews() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.setStatusBarBackground(R.color.material_grey_200);
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitleTextColor(CommonUtils.getColor(R.color.material_white));
         mToolbar.setTitle(R.string.news);
@@ -75,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         CommonUtils.checkNotNull(actionBar).setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(CommonUtils.checkNotNull(mNavigationView));
         mNewsFragment = new NewsFragment();

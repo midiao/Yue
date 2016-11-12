@@ -1,6 +1,9 @@
 <resources>
 
     <style name="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/material_green_700</item>
+        <item name="colorPrimaryDark">@color/material_green_900</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

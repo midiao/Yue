@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 
 import com.superjunior.yue.R;
 
-public abstract class BaseDetailActivity extends AppCompatActivity {
+public abstract class BaseDetailActivity extends BaseActivity {
 
     private Toolbar mToolbar;
     private WebView mWebView;
@@ -24,8 +24,14 @@ public abstract class BaseDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor(R.color.material_green_900);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_detail);
+        initViews();
+    }
+
+    @Override
+    protected void initViews() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mWebView = (WebView) findViewById(R.id.webView);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -45,7 +51,7 @@ public abstract class BaseDetailActivity extends AppCompatActivity {
             public void run() {
                 mWebView.loadUrl(getUrl());
             }
-        }, 1000);
+        }, 100);
     }
 
     private class YueWebViewCline extends WebViewClient {
