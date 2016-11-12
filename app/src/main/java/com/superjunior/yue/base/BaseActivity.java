@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.superjunior.yue.R;
+import com.superjunior.yue.util.CommonUtils;
 
 /**
  * Created by alwayskim on 2016/11/12.
@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 //                mStatusBarColor = R.color.material_green_900;
                 return;
             }
-            window.setStatusBarColor(this.getResources().getColor(mStatusBarColor));
+            window.setStatusBarColor(CommonUtils.getColor(mStatusBarColor));
             Log.i("BaseActivity", "set statusbar color");
         }
         Log.i("BaseActivity", "set  color");

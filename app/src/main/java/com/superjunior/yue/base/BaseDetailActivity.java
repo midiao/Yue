@@ -3,7 +3,6 @@ package com.superjunior.yue.base;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
@@ -45,7 +44,7 @@ public abstract class BaseDetailActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-        mWebView.setWebViewClient(new YueWebViewCline());
+        mWebView.setWebViewClient(new YueWebViewClient());
         mWebView.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -54,7 +53,7 @@ public abstract class BaseDetailActivity extends BaseActivity {
         }, 100);
     }
 
-    private class YueWebViewCline extends WebViewClient {
+    private class YueWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getUrl()));
