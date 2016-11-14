@@ -1,4 +1,4 @@
-package com.superjunior.yue.ui;
+package com.superjunior.yue.ui.news;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -32,9 +32,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         mFragmentManager = getSupportFragmentManager();
-        initViews();
     }
 
     @Override
@@ -80,6 +78,16 @@ public class MainActivity extends BaseActivity {
         mDailyFragment = new ZhiHuDailyFragment();
         mCurrentFragment = mNewsFragment;
         ActivityUtils.addFragment(getSupportFragmentManager(), mNewsFragment, R.id.contentFrame);
+    }
+
+    @Override
+    protected void setStatusBarColor() {
+        mStatusBarColor = R.color.colorPrimaryDark;
+    }
+
+    @Override
+    protected void setLayoutResID() {
+        mLayoutResID = R.layout.activity_main;
     }
 
     private void setupDrawerContent(NavigationView navigationView) {

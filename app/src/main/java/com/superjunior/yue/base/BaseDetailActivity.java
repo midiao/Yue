@@ -23,10 +23,7 @@ public abstract class BaseDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setStatusBarColor(R.color.material_green_900);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_detail);
-        initViews();
     }
 
     @Override
@@ -51,6 +48,16 @@ public abstract class BaseDetailActivity extends BaseActivity {
                 mWebView.loadUrl(getUrl());
             }
         }, 100);
+    }
+
+    @Override
+    protected void setLayoutResID() {
+        mLayoutResID = R.layout.activity_base_detail;
+    }
+
+    @Override
+    protected void setStatusBarColor() {
+        mStatusBarColor = R.color.colorPrimaryDark;
     }
 
     private class YueWebViewClient extends WebViewClient {

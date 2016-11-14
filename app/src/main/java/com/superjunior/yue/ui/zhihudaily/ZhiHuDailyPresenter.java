@@ -42,7 +42,7 @@ public class ZhiHuDailyPresenter implements ZhiHuDailyContract.Presenter {
 
     @Override
     public void start() {
-
+        initDailyData();
     }
 
     @Override

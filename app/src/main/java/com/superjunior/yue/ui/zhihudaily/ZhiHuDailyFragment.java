@@ -42,7 +42,7 @@ public class ZhiHuDailyFragment extends Fragment implements ZhiHuDailyContract.V
                 CommonUtils.getColor(R.color.material_yellow_500));
         mBanner = (ConvenientBanner) contentView.findViewById(R.id.top_banner);
         mRecyclerView = (RecyclerView) contentView.findViewById(R.id.daily_recyclerView);
-        mPresenter.initDailyData();
+        mPresenter.start();
         return contentView;
     }
 

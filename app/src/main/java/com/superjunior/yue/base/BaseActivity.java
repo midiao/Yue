@@ -1,5 +1,6 @@
 package com.superjunior.yue.base;
 
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,21 +17,27 @@ import com.superjunior.yue.util.CommonUtils;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private int mStatusBarColor = -1;
+    protected int mStatusBarColor;
+    protected int mLayoutResID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayoutResID();
         setStatusBarColor();
+        initStatusBar();
+        setContentView(mLayoutResID);
+        initViews();
     }
 
-    abstract protected void initViews();
+    protected abstract void initViews();
 
-    protected void setStatusBarColor(int color) {
-        mStatusBarColor = color;
-    }
+    protected abstract void setStatusBarColor();
 
-    protected void setStatusBarColor() {
+    protected abstract void setLayoutResID();
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected void initStatusBar() {
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

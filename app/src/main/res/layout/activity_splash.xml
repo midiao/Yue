@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/advertise_picture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:actualImageScaleType="fitXY"/>
+
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/count_progress"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="end"
+        android:layout_margin="5dp"
+        android:visibility="gone"
+        app:donut_background_color="#55F1F1F1"
+        app:donut_finished_color="#ffff4444"
+        app:donut_finished_stroke_width="2dp"
+        app:donut_progress="0"
+        app:donut_text="开始"
+        app:donut_text_color="@android:color/white"
+        app:donut_text_size="10sp"
+        app:donut_unfinished_color="@android:color/transparent"
+        app:donut_unfinished_stroke_width="2dp"/>
+</FrameLayout>
