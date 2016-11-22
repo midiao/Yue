@@ -3,13 +3,14 @@ package com.superjunior.yue.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Animatable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;
@@ -20,9 +21,18 @@ import com.facebook.imagepipeline.image.ImageInfo;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.superjunior.yue.R;
 import com.superjunior.yue.base.BaseActivity;
+import com.superjunior.yue.model.StartImageModel;
+import com.superjunior.yue.net.StartImageAPI;
+import com.superjunior.yue.net.StartImageService;
 import com.superjunior.yue.ui.news.MainActivity;
 
 import java.lang.ref.WeakReference;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by cb8695 on 2016/11/14.
@@ -31,10 +41,11 @@ import java.lang.ref.WeakReference;
 public class SplashActivity extends BaseActivity {
 
     private final static String TAG = "SplashActivity";
-    private String mUrl = "http://p2.zhimg.com/10/7b/107bb4894b46d75a892da6fa80ef504a.jpg";
-    private Uri mAdvertiseUri = Uri.parse(mUrl);
+    private Retrofit mRetrofit;
+    private StartImageService mImageService;
     private DonutProgress mDonutProgress;
     private SimpleDraweeView mSimpleDraweeView;
+    private TextView mTextView;
     private MyHandler mHandler;
     private DraweeController mController;
     private static final int MSG_PROGRESS_UPDATE = 0x110;
@@ -74,20 +85,25 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHandler = new MyHandler(this);
-        mSimpleDraweeView.setController(mController);
     }
 
     @Override
     protected void initViews() {
+        mRetrofit = new Retrofit.Builder().client(new OkHttpClient())
+                .baseUrl(StartImageAPI.START_IMAGE_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        mImageService = mRetrofit.create(StartImageService.class);
         mSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.advertise_picture);
         mDonutProgress = (DonutProgress) findViewById(R.id.count_progress);
+        mTextView = (TextView) findViewById(R.id.author_name);
         mDonutProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startMainActivity();
             }
         });
-        ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
+        final ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
             @Override
             public void onFinalImageSet(String id, ImageInfo imageInfo, Animatable animatable) {
                 mDonutProgress.setVisibility(View.VISIBLE);
@@ -99,8 +115,22 @@ public class SplashActivity extends BaseActivity {
                 Log.d(TAG, "get advertise picture failed");
             }
         };
-        mController = Fresco.newDraweeControllerBuilder().setControllerListener(controllerListener)
-                .setUri(mAdvertiseUri).build();
+        Call<StartImageModel> call = mImageService.getStartImage(getScreenWidth(), getScreenHeight());
+        call.enqueue(new retrofit2.Callback<StartImageModel>() {
+            @Override
+            public void onResponse(Call<StartImageModel> call, Response<StartImageModel> response) {
+                StartImageModel model = response.body();
+                mController = Fresco.newDraweeControllerBuilder().setControllerListener(controllerListener)
+                        .setUri(model.getImg()).build();
+                mSimpleDraweeView.setController(mController);
+                mTextView.setText(model.getText());
+            }
+
+            @Override
+            public void onFailure(Call<StartImageModel> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
@@ -126,5 +156,15 @@ public class SplashActivity extends BaseActivity {
             mHandler = null;
         }
         super.onDestroy();
+    }
+
+    private String getScreenWidth() {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        return String.valueOf(dm.widthPixels);
+    }
+
+    private String getScreenHeight() {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        return String.valueOf(dm.heightPixels);
     }
 }

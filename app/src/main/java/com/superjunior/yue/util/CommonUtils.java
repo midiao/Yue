@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import static com.superjunior.yue.base.YueApplication.getContext;
